@@ -1,0 +1,9 @@
+@import '../mixins/containers';
+@import '../variables/variables';
+
+.genres {
+
+  > ul {
+    @include container-contents();
+  }
+}

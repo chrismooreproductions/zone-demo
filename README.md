@@ -1,5 +1,40 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Thanks for checking my code! Obviously to run just `yarn install` and then `yarn start` to get up and running.
+
+## Interesting things
+
+The app is animated (well, it's actually an animated transformation) using the withFade HOC in ./src/animatedComponents.
+The Sidebar components then the movies are transitioned in using transition delay to give a rather fetching swoosh effect
+when the page loads :).
+
+I used CSS grid to style the layout, switching to flexbox at 600px screen width for mobile and smaller screen widths.
+
+The app state is held in 2 custom hooks which are useMovies and useGenres. These are responsible for fetching the now playing movies
+and all genres from the TMDb API. There is a hard stop in the useEffect hooks of these custom hooks to prevent the API
+from being called if there is any data stored in the state, this ensures the APIs are called only once as per the spec.
+
+There is a config file in ./src/config that contains the API keys and URL roots etc.
+
+The movies are automatically returned in order of popularity from the API (highest to lowest).
+
+Movies are filtered in 2 steps:
+1) By the user's selected genres (if there are any genres selected in the sidebar!)
+2) By the popularity of these filtered movies
+
+Sorry there are no tests, I didn't have much time to work on this. I did use the PropTypes package, though I generally
+prefer typescript these days!
+
+For more (with tests!!) please see:
+https://github.com/chrismooreproductions/routefinder
+https://github.com/chrismooreproductions/shopping-cart-demo
+
+I also have a vue / typescript demo if you would like to see that.
+
+Thanks :)
+
+Chris
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -1,0 +1,5 @@
+@import '../variables/variables';
+
+@mixin external-margins {
+  margin: $spacer;
+}

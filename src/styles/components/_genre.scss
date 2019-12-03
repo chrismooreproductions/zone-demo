@@ -1,0 +1,9 @@
+.genre {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .--name {
+    padding-left: 2px;
+  }
+}
