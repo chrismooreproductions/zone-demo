@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { genreProp } from '../proptypes'
 import Movie from '../components/Movie'
-import withFade from '../animatedComponents/withFade'
 import '../styles/containers/_movies.scss'
+import Fade from '../animated/Fade'
 
-const Movies = ({ movies, sidebarIn, moviesIn, setMoviesIn, allGenres, userRating, userGenres }) => {
+const Movies = ({ movies, sidebarIn, moviesIn, setMoviesIn, allGenres, userRating, userGenres, ...props }) => {
   const [moviesByGenre, setMoviesByGenre] = useState([])
   const [moviesByRating, setMoviesByRating] = useState([])
 
@@ -46,7 +46,10 @@ const Movies = ({ movies, sidebarIn, moviesIn, setMoviesIn, allGenres, userRatin
   }, [moviesByGenre, userRating])
 
   return (
-    <React.Fragment>
+    <Fade
+      displayed={props.displayed}
+      className={props.className}
+    >
       {moviesByRating.map((movie, index) => {
         return (
           <Movie 
@@ -59,7 +62,7 @@ const Movies = ({ movies, sidebarIn, moviesIn, setMoviesIn, allGenres, userRatin
           />
         )
       })}
-    </React.Fragment>
+    </Fade>
   )
 }
 
@@ -75,4 +78,4 @@ Movies.propTypes = {
   className: PropTypes.string.isRequired
 }
 
-export default withFade(Movies)
+export default Movies

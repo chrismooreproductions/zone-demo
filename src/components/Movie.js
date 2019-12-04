@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import { genreProp } from '../proptypes'
-import withFade from '../animatedComponents/withFade'
+import Fade from '../animated/Fade'
 import config from '../config'
 
-const Movie = ({ movie, genres }) => {
+const Movie = ({ movie, genres, ...props }) => {
   const [genresForMovie, setGenresForMovie] = useState([])
   useEffect(() => {
     if (movie && genres.length > 0) {
@@ -20,7 +20,11 @@ const Movie = ({ movie, genres }) => {
 
 
   return (
-    <React.Fragment>
+    <Fade
+      displayed={props.displayed}
+      className={props.className}
+      animationDelay={props.animationDelay}
+    >
       <img src={`${config.imageRootUrl}${movie.poster_path}`} width="100" alt={`${movie.title} poster`} />
       <div className="--info">
         <h3 className="--title">
@@ -35,7 +39,7 @@ const Movie = ({ movie, genres }) => {
           }
         </ul>
       </div>
-    </React.Fragment>
+    </Fade>
   )
 }
 
@@ -47,4 +51,4 @@ Movie.propTypes = {
   genres: PropTypes.arrayOf(genreProp).isRequired
 }
 
-export default withFade(Movie)
+export default Movie

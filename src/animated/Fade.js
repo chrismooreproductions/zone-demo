@@ -3,18 +3,18 @@ import { Transition } from 'react-transition-group';
 
 const duration = 1000;
 
-const withFade = Component => props => {
+const Fade = props => {
   const animationProps = {
     duration: 1
   }
-
+  
   const style = {
     transitionDuration: `${animationProps.duration}s`,
     transitionDelay: `${props.animationDelay}s`,
     transitionProperty: `opacity`,
     opacity: 0,
   }
-
+  
   const transitionStyle = {
     entering: {opacity: 0},
     entered: {opacity: 1},
@@ -35,15 +35,11 @@ const withFade = Component => props => {
             ...transitionStyle[state]
           }}
         >
-          <Component
-            {...props}
-            transitionState={state}
-            animationProps={animationProps}
-          />
+          {props.children}
         </div>
       )}
     </Transition>
   )
 }
 
-export default withFade
+export default Fade

@@ -2,16 +2,20 @@ import React, {useEffect} from 'react'
 import PropTypes from 'prop-types'
 import { genreProp } from '../proptypes'
 import Genre from '../components/Genre'
-import withFade from '../animatedComponents/withFade'
 import '../styles/containers/_genres.scss'
+import Fade from '../animated/Fade'
 
-const Genres = ({allGenresForMovies, allGenres, updateUserGenres, userGenres, genresDisplayed, setGenresDisplayed}) => {
+const Genres = ({allGenresForMovies, allGenres, updateUserGenres, userGenres, genresDisplayed, setGenresDisplayed, ...props}) => {
   useEffect(() => {
     setGenresDisplayed(true)
   }, [genresDisplayed, setGenresDisplayed])
   
   return (
-    <React.Fragment>
+    <Fade
+      displayed={props.displayed}
+      className={props.className}
+      animationDelay={props.animationDelay}
+    >
       <h3 className="container-header">Genres</h3>
       <ul>
         {
@@ -43,7 +47,7 @@ const Genres = ({allGenresForMovies, allGenres, updateUserGenres, userGenres, ge
             null
         }
       </ul>
-    </React.Fragment>
+    </Fade>
   )
 }
 
@@ -58,4 +62,4 @@ Genres.propTypes = {
   animationDelay: PropTypes.number.isRequired
 }
 
-export default withFade(Genres)
+export default Genres

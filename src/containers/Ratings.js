@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Slider from 'react-input-slider';
-import withFade from '../animatedComponents/withFade'
+import Fade from '../animated/Fade';
 
-const Ratings = ({ updateRating, rating, genresDisplayed, ratingsDisplayed, setRatingsDisplayed }) => {
+const Ratings = ({ updateRating, rating, genresDisplayed, ratingsDisplayed, setRatingsDisplayed, ...props }) => {
   useEffect(() => {
     if (!ratingsDisplayed && genresDisplayed) setRatingsDisplayed(true) 
   })
 
   return (
-    <React.Fragment>
+    <Fade
+      displayed={props.displayed}
+      className={props.className}
+      animationDelay={props.animationDelay}
+    >
       <h3 className="container-header">Ratings</h3>
       <div className="container-contents">
         <p>Current rating: {rating}</p>
@@ -27,7 +31,7 @@ const Ratings = ({ updateRating, rating, genresDisplayed, ratingsDisplayed, setR
           }}
         />
       </div>
-    </React.Fragment>
+    </Fade>
   )
 }
 
@@ -41,4 +45,4 @@ Ratings.propTypes = {
   animationDelay: PropTypes.number.isRequired
 }
 
-export default withFade(Ratings)
+export default Ratings
