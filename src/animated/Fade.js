@@ -23,6 +23,10 @@ const Fade = props => {
   }
 
   return (
+    // welcome to animation land. we're gonna animate the component based
+    // upon the state set in the App component then do a bit of a fade in effect
+    // on everything using the Transition component from react-transition-group.
+
     <Transition
       in={props.displayed} 
       timeout={{duration}}

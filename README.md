@@ -4,7 +4,7 @@ Thanks for checking my code! Obviously to run just `yarn install` and then `yarn
 
 ## Interesting things
 
-The app is animated (well, it's actually an animated transformation) using the withFade HOC in ./src/animated.
+The app is animated (well, it's actually an animated transformation) using the ~~withFade HOC~~ Fade component in ./src/animated.
 The Sidebar components then the movies are transitioned in using transition delay to give a rather fetching swoosh effect
 when the page loads :).
 

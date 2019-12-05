@@ -9,6 +9,7 @@ const Movies = ({ movies, sidebarIn, moviesIn, setMoviesIn, allGenres, userRatin
   const [moviesByGenre, setMoviesByGenre] = useState([])
   const [moviesByRating, setMoviesByRating] = useState([])
 
+  // do tha animatons in...
   useEffect(() => {
     if (sidebarIn && !moviesIn) {
       setMoviesIn(true)
@@ -26,10 +27,15 @@ const Movies = ({ movies, sidebarIn, moviesIn, setMoviesIn, allGenres, userRatin
 
     if ( userGenres.length > 0) {
       const filteredMovies = movies.filter(movie => {
+        // what we're doing is making all the comparisons (each userGenre vs each movie's genres)
+        // then whatever the result pushing the bool value to this array.
         let doesContainAllUserGenres = []
         userGenres.forEach(g => {
           movie.genre_ids.includes(g) ? doesContainAllUserGenres.push(true) : doesContainAllUserGenres.push(false)
         })
+        // then if any of the comparisons return false we return the movie in th loop as false as
+        // it does not fulfill all the criteria for the search (i.e. film genres meet all the user genres 
+        // criteria).
         if (doesContainAllUserGenres.includes(false)) return false
         return true
       })
@@ -37,7 +43,8 @@ const Movies = ({ movies, sidebarIn, moviesIn, setMoviesIn, allGenres, userRatin
     }
   }, [userGenres, movies])
 
-  // Then, filter by rating...
+  // Then, filter by rating...this is where ideally we would have a dropdown option to filter
+  // by genre or rating first.
   useEffect(() => {
     const ratedMovies = moviesByGenre.filter(movie => {
       return movie.vote_average >= userRating
@@ -46,6 +53,7 @@ const Movies = ({ movies, sidebarIn, moviesIn, setMoviesIn, allGenres, userRatin
   }, [moviesByGenre, userRating])
 
   return (
+    // Fades m8
     <Fade
       displayed={props.displayed}
       className={props.className}
