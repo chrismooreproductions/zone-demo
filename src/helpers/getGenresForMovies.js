@@ -12,4 +12,4 @@ const getGenresForMovies = (movies) => {
   return []
 }
 
-export { getGenresForMovies }
+export default getGenresForMovies

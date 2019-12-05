@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import { getMovies } from '../helpers/api'
+import { getMovies } from '../api'
 
 const useMovies = (genre, rating) => {
   const [movies, setMovies] = useState([])

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Slider from 'react-input-slider';
 import Fade from '../animated/Fade';
 
-const Ratings = ({ updateRating, rating, genresDisplayed, ratingsDisplayed, setRatingsDisplayed, ...props }) => {
+const Ratings = ({ updateRating, userRating, genresDisplayed, ratingsDisplayed, setRatingsDisplayed, ...props }) => {
   useEffect(() => {
     if (!ratingsDisplayed && genresDisplayed) setRatingsDisplayed(true) 
   })
@@ -16,13 +16,13 @@ const Ratings = ({ updateRating, rating, genresDisplayed, ratingsDisplayed, setR
     >
       <h3 className="container-header">Ratings</h3>
       <div className="container-contents">
-        <p>Current rating: {rating}</p>
+        <p>Current Rating: {userRating}</p>
         <Slider
           axis="x"
           xstep={0.5}
           xmin={0}
           xmax={10}
-          x={rating}
+          x={userRating}
           onChange={({ x }) => updateRating( parseFloat(x.toFixed(2)) )}
           styles={{
             track: {
@@ -40,7 +40,7 @@ Ratings.propTypes = {
   setRatingsDisplayed: PropTypes.func.isRequired,
   genresDisplayed: PropTypes.bool.isRequired,
   updateRating: PropTypes.func.isRequired,
-  rating: PropTypes.number.isRequired,
+  userRating: PropTypes.number.isRequired,
   className: PropTypes.string.isRequired,
   animationDelay: PropTypes.number.isRequired
 }

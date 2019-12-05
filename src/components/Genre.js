@@ -1,30 +1,43 @@
 import React, {useState, useEffect} from 'react'
+import PropTypes from 'prop-types'
 import '../styles/components/_genre.scss'
 
-const Genre = ({ allGenres, genre, userGenres, updateUserGenres, transitionState, styles, transitionStyles }) => {
+const Genre = ({ genre, userGenres, updateUserGenres }) => {
   const [isChecked, setIsChecked] = useState(false)
 
-  const fetchedGenre = allGenres.filter(filteredGenre => {
-    return filteredGenre.id === genre
-  })
-
   useEffect(() => {
-    if (userGenres.includes(fetchedGenre[0].id)) setIsChecked(true)
-  }, [fetchedGenre, userGenres])
+    if (genre) {
+      if (userGenres.includes(genre.id)) setIsChecked(true)
+    }
+  }, [genre, userGenres])
 
   // Let's assume genres don't share ID's please...
   return (
-    <li className="genre">
-      <input
-        key={fetchedGenre[0].id}
-        className="checkbox regular-checkbox"
-        defaultChecked={isChecked}
-        type="checkbox"
-        onChange={(e) => updateUserGenres(e, fetchedGenre[0].id)}
-      />
-      <span className="--name">{fetchedGenre[0].name}</span>
-    </li>
+    <>
+      { genre ?
+        <li className="genre">
+          <input
+            key={genre.id}
+            className="checkbox regular-checkbox"
+            defaultChecked={isChecked}
+            type="checkbox"
+            onChange={(e) => updateUserGenres(e, genre.id)}
+          />
+          <span className="--name">{genre.name}</span>
+        </li>
+        : null
+      }   
+    </>
   )
+}
+
+Genre.propTypes = {
+  genre: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string
+  }),
+  userGenres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  updateUserGenres: PropTypes.func.isRequired,
 }
 
 export default Genre

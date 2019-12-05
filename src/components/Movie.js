@@ -1,24 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { genreProp } from '../proptypes'
 import Fade from '../animated/Fade'
 import config from '../config'
 
-const Movie = ({ movie, genres, ...props }) => {
-  const [genresForMovie, setGenresForMovie] = useState([])
-  useEffect(() => {
-    if (movie && genres.length > 0) {
-      const movieGenres = movie.genre_ids.map(id => {
-        return genres.filter(g => {
-          return g.id === id
-        })[0]
-      })
-      setGenresForMovie(movieGenres)
-    }
-  }, [movie, genres])
-
-
-
+const Movie = ({ movie, ...props }) => {
   return (
     <Fade
       displayed={props.displayed}
@@ -33,7 +18,7 @@ const Movie = ({ movie, genres, ...props }) => {
         <h4 className="--genre-title">Genres:</h4>
         <ul className="--genres">
           {
-            genresForMovie.map((g, index)=> {
+            movie.genres.map((g, index)=> {
               return <li className="--genre" key={index}>{g.name}</li>
             })
           }
@@ -48,7 +33,6 @@ Movie.propTypes = {
   className: PropTypes.string.isRequired,
   animationDelay: PropTypes.number.isRequired,
   movie: PropTypes.shape({}).isRequired,
-  genres: PropTypes.arrayOf(genreProp).isRequired
 }
 
 export default Movie

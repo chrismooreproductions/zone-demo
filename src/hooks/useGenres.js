@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import { getGenres } from '../helpers/api'
+import { getGenres } from '../api'
 
 const sortGenreDataById = (genreIds) => {
   return genreIds.sort((a, b) => {

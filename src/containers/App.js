@@ -2,59 +2,49 @@ import React, { useState, useEffect } from 'react'
 import Header from '../containers/Header'
 import Sidebar from '../containers/Sidebar'
 import Movies from '../containers/Movies'
+import filters from '../constants/filters'
 import '../styles/containers/_app.scss'
-import useMovies from '../hooks/useMovies'
-import useGenres from '../hooks/useGenres'
-import { getGenresForMovies } from '../helpers/genres_movies'
+
+import useFilteredMovies from '../hooks/useFilteredMovies'
 import cloneObject from '../helpers/cloneObject'
 
 function App() {
-  const [userSelection, setUserSelection] = useState({
-    maxRating: 3,
-    uniqueGenres: '',
-    userRating: 3,
-    userGenres: [],
-    userHasUpdatedRating: false,
-    userHasUpdatedGenre: false
-  })
+  const { GENRES } = filters
+
+  const [userGenres, setUserGenres] = useState([])
+  const [userRating, setUserRating] = useState(3)
+  const userFilter = GENRES
 
   const [headerIn, setHeaderIn] = useState(false)
   const [sidebarIn, setSidebarIn] = useState(false)
   const [moviesIn, setMoviesIn] = useState(false)
   
+  const [filteredMovies, allGenresForMovies] = useFilteredMovies(
+    userRating,
+    userGenres,
+    userFilter
+  )
+  
   useEffect(() => {
     setHeaderIn(true)
   }, [headerIn])
 
-  const movies = useMovies()
-  const genres = useGenres()
-  const allGenresForMovies = getGenresForMovies(movies)
-
   const updateUserGenres = (e, val) => {
     if (e.target.checked) {
-      const updatedGenres = cloneObject(userSelection.userGenres)
-      updatedGenres.push(val)
-      setUserSelection({
-        ...userSelection,
-        userGenres: updatedGenres
-      })
+      const updatedUserGenres = cloneObject(userGenres)
+      updatedUserGenres.push(val)
+      setUserGenres(updatedUserGenres)
     }
     if (!e.target.checked) {
-      const updatedGenres = cloneObject(userSelection.userGenres)
-      const genreIndex = updatedGenres.indexOf(val)
-      updatedGenres.splice(genreIndex, 1)
-      setUserSelection({
-        ...userSelection,
-        userGenres: updatedGenres
-      })
+      const updatedUserGenres = cloneObject(userGenres)
+      const genreIndex = updatedUserGenres.indexOf(val)
+      updatedUserGenres.splice(genreIndex, 1)
+      setUserGenres(updatedUserGenres)
     }
   }
 
-  const updateRating = (userRating) => {
-    setUserSelection({
-      ...userSelection,
-      userRating
-    })
+  const updateRating = (rating) => {
+    setUserRating(rating)
   }
 
   return (
@@ -64,25 +54,20 @@ function App() {
         className="header"
       />
       <Sidebar
-        allGenres={genres}
         sidebarIn={sidebarIn}
+        userRating={userRating}
         updateRating={updateRating}
-        rating={userSelection.userRating}
-        allGenresForMovies={allGenresForMovies}
+        userGenres={userGenres}
         updateUserGenres={updateUserGenres}
-        setUserSelection={setUserSelection}
-        userGenres={userSelection.userGenres}
+        allGenresForMovies={allGenresForMovies}
         setSidebarIn={setSidebarIn}
       />
       <Movies
-        allGenres={genres}
-        sidebarIn={sidebarIn}
+        movies={filteredMovies}
         moviesIn={moviesIn}
         setMoviesIn={setMoviesIn}
+        sidebarIn={sidebarIn}
         displayed={moviesIn}
-        userRating={userSelection.userRating}
-        userGenres={userSelection.userGenres}
-        movies={movies}
         className='movies'
       />
     </>
