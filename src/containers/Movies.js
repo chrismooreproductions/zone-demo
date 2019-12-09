@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
 import Movie from '../components/Movie'
 import '../styles/containers/_movies.scss'
 import Fade from '../animated/Fade'
 
-const Movies = ({ movies, sidebarIn, moviesIn, setMoviesIn, allGenres, ...props }) => {
-  useEffect(() => {
+const Movies = ({ movies, sidebarIn, moviesIn, setMoviesIn, ...props }) => {
+  useLayoutEffect(() => {
     if (sidebarIn && !moviesIn) {
       setMoviesIn(true)
     }
@@ -22,7 +22,7 @@ const Movies = ({ movies, sidebarIn, moviesIn, setMoviesIn, allGenres, ...props 
             key={index}
             displayed={moviesIn}
             className="movie"
-            animationDelay={index * 0.025}
+            animationDelay={index * 1}
             movie={movie}
           />
         )

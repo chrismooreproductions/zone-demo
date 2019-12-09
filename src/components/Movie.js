@@ -18,7 +18,8 @@ const Movie = ({ movie, ...props }) => {
         <h4 className="--genre-title">Genres:</h4>
         <ul className="--genres">
           {
-            movie.genres.map((g, index)=> {
+            movie &&
+            movie.genres.map((g, index) => {
               return <li className="--genre" key={index}>{g.name}</li>
             })
           }

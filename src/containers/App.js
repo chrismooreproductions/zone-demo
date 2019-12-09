@@ -9,21 +9,19 @@ import useFilteredMovies from '../hooks/useFilteredMovies'
 import cloneObject from '../helpers/cloneObject'
 
 function App() {
-  const { GENRES } = filters
-
   const [userGenres, setUserGenres] = useState([])
   const [userRating, setUserRating] = useState(3)
-  const userFilter = GENRES
+  const userFilter = filters.GENRES
 
-  const [headerIn, setHeaderIn] = useState(false)
-  const [sidebarIn, setSidebarIn] = useState(false)
-  const [moviesIn, setMoviesIn] = useState(false)
-  
   const [filteredMovies, allGenresForMovies] = useFilteredMovies(
     userRating,
     userGenres,
     userFilter
   )
+
+  const [headerIn, setHeaderIn] = useState(false)
+  const [sidebarIn, setSidebarIn] = useState(false)
+  const [moviesIn, setMoviesIn] = useState(false)
   
   useEffect(() => {
     setHeaderIn(true)

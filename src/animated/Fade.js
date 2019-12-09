@@ -1,16 +1,22 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Transition } from 'react-transition-group';
 
-const duration = 1000;
+const duration = 5000;
 
 const Fade = props => {
+  const [isDisplayed, setIsDisplayed] = useState(false)
+
+  useEffect(() => {
+    if (!isDisplayed) setIsDisplayed(true)
+  }, [isDisplayed, setIsDisplayed])
+  
   const animationProps = {
-    duration: 1
+    duration: 0.6
   }
   
   const style = {
     transitionDuration: `${animationProps.duration}s`,
-    transitionDelay: `${props.animationDelay}s`,
+    transitionDelay: `${props.animationDelay}ms`,
     transitionProperty: `opacity`,
     opacity: 0,
   }
@@ -39,6 +45,7 @@ const Fade = props => {
             ...transitionStyle[state]
           }}
         >
+          {console.log(state)}
           {props.children}
         </div>
       )}
