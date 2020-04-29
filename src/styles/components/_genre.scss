@@ -3,6 +3,11 @@
   flex-direction: row;
   align-items: center;
 
+  &:last-child {
+    margin-bottom: 22px;
+
+  }
+
   .--name {
     padding-left: 2px;
   }

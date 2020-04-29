@@ -1,14 +1,13 @@
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { getMovies } from '../api'
 
-const useMovies = (genre, rating) => {
+const useMovies = () => {
   const [movies, setMovies] = useState([])
 
   useEffect(() => {
     if (movies.length === 0) {
       const fetchData = async () => {
         const fetchedMovies = await getMovies()
-        // ohhhh...you never know when you're gonna need a ref...
         setMovies(fetchedMovies.results)
       }
       fetchData()
@@ -16,7 +15,7 @@ const useMovies = (genre, rating) => {
   }, [movies])
 
   
-  return movies
+  return { movies, setMovies }
 }
 
 export default useMovies

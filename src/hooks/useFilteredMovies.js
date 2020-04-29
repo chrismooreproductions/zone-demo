@@ -16,8 +16,8 @@ const useFilteredMovies = (rating, genres, filter) => {
   const { GENRES, RATING } = filters
 
   // State for movies and movie genres from api...
-  const allMovies = useMovies()
-  const allGenres = useGenres()
+  const { movies } = useMovies()
+  const { allGenres } = useGenres()
   
   // State for user preferences...
   const userRating = useUserRating(rating)
@@ -34,14 +34,14 @@ const useFilteredMovies = (rating, genres, filter) => {
     let byGenre = []
     let byRating = []
 
-    // apply the filter based on the user input...
+    // apply the filter based on the user's selected filter...
     switch(userFilter) {
       case (GENRES):
-        byGenre = filterMoviesByGenre(allMovies, userGenres)
+        byGenre = filterMoviesByGenre(movies, userGenres)
         byRating = filterMoviesByRating(byGenre, userRating)
         break
       case (RATING):
-        byRating = filterMoviesByRating(allMovies, userRating)
+        byRating = filterMoviesByRating(movies, userRating)
         byGenre = filterMoviesByGenre(byRating, userGenres)
         break
       default: break
@@ -51,9 +51,9 @@ const useFilteredMovies = (rating, genres, filter) => {
       byGenre,
       byRating
     })
-  }, [filter, userFilter, GENRES, allMovies, userGenres, userRating, RATING])
+  }, [filter, userFilter, GENRES, movies, userGenres, userRating, RATING])
 
-  const genresForMoviesById = getGenresForMovies(allMovies)
+  const genresForMoviesById = getGenresForMovies(movies)
   const mappedGenres = genresForMoviesById.map(genreId => {
     return allGenres.filter(genre => genre.id === genreId)[0]
   })

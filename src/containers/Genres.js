@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react'
 import PropTypes from 'prop-types'
 import Genre from '../components/Genre'
-import '../styles/containers/_genres.scss'
 import Fade from '../animated/Fade'
+import downArrow from '../assets/images/down-arrow.svg'
+import '../styles/containers/_genres.scss'
 
 const Genres = ({
   allGenresForMovies,
@@ -44,6 +45,9 @@ const Genres = ({
             null
         }
       </ul>
+      <div className="down-arrow">
+        <img src={downArrow} alt="Movie genres down arrow" />
+      </div>
     </Fade>
   )
 }

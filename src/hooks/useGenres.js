@@ -1,18 +1,13 @@
 import {useState, useEffect} from 'react'
 import { getGenres } from '../api'
-
-const sortGenreDataById = (genreIds) => {
-  return genreIds.sort((a, b) => {
-    return a.id - b.id
-  })
-}
+import sortGenreDataById from '../helpers/sortGenreDataById'
 
 const useGenres = () => {
   // please sort genres numerically ascending...
-  const [genres, setGenres] = useState([])
+  const [allGenres, setGenres] = useState([])
   
   useEffect(() => {
-    if (genres.length === 0) { // if we were going to expand this we could also check if the genreIds array matches the corresponding genre array as a concatted string - if they don't match update.
+    if (allGenres.length === 0) { // if we were going to expand this we could also check if the genreIds array matches the corresponding genre array as a concatted string - if they don't match update.
       const fetchData = async () => {
         let genres = await getGenres()
         genres = sortGenreDataById(genres.genres)
@@ -21,9 +16,9 @@ const useGenres = () => {
 
       fetchData()
     }
-  }, [genres.length])
+  }, [allGenres.length])
 
-  return genres
+  return { allGenres, setGenres }
 }
 
 export default useGenres

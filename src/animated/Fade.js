@@ -11,7 +11,7 @@ const Fade = props => {
   }, [isDisplayed, setIsDisplayed])
   
   const animationProps = {
-    duration: 0.6
+    duration: 2
   }
   
   const style = {
@@ -45,7 +45,6 @@ const Fade = props => {
             ...transitionStyle[state]
           }}
         >
-          {console.log(state)}
           {props.children}
         </div>
       )}
