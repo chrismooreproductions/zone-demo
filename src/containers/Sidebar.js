@@ -1,39 +1,48 @@
-import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
-import Genres from './Genres'
-import Ratings from './Ratings'
-import '../styles/containers/_sidebar.scss'
-import '../styles/components/_checkbox.scss'
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import Genres from "./Genres";
+import Ratings from "./Ratings";
+import "../styles/containers/_sidebar.scss";
+import "../styles/components/_checkbox.scss";
 
-const Sidebar = ({ allGenresForMovies, allGenres, updateUserGenres, userGenres, updateRating, userRating, sidebarIn, setSidebarIn }) => {
+const Sidebar = ({
+  allGenresForMovies,
+  updateUserGenres,
+  userGenres,
+  updateRating,
+  userRating,
+  sidebarIn,
+  setSidebarIn,
+}) => {
   // These two state values are the switches for the sidebar panel animations.
-  const [genresDisplayed, setGenresDisplayed] = useState(false)
-  const [ratingsDisplayed, setRatingsDisplayed] = useState(false)
+  const [genresDisplayed, setGenresDisplayed] = useState(false);
+  const [ratingsDisplayed, setRatingsDisplayed] = useState(false);
 
   useEffect(() => {
     if (genresDisplayed && ratingsDisplayed && !sidebarIn) {
       // this is the prop that sets the sidebar visibility to true, then we can
       // animate the movies in...
-      setSidebarIn(true)
+      setSidebarIn(true);
     }
-  })
-  
+  });
+
   return (
     // TODO: implement error handling here in case no movies ando/or genre
     // data is available.
-    <div className='sidebar'>
+    <div className="sidebar">
       {
         // basically check if there is any genre data, else we should do something else
-        allGenresForMovies.length > 0 &&
-        <Genres
-          allGenresForMovies={allGenresForMovies}
-          updateUserGenres={updateUserGenres}
-          userGenres={userGenres}
-          setGenresDisplayed={setGenresDisplayed}
-          displayed={genresDisplayed}
-          className='genres'
-          animationDelay={0}
-        />
+        allGenresForMovies.length > 0 && (
+          <Genres
+            allGenresForMovies={allGenresForMovies}
+            updateUserGenres={updateUserGenres}
+            userGenres={userGenres}
+            setGenresDisplayed={setGenresDisplayed}
+            displayed={genresDisplayed}
+            className="genres"
+            animationDelay={0}
+          />
+        )
       }
       {
         <Ratings
@@ -47,8 +56,8 @@ const Sidebar = ({ allGenresForMovies, allGenres, updateUserGenres, userGenres, 
         />
       }
     </div>
-  )
-}
+  );
+};
 
 Sidebar.propTypes = {
   sidebarIn: PropTypes.bool.isRequired,
@@ -57,7 +66,7 @@ Sidebar.propTypes = {
   allGenresForMovies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   userGenres: PropTypes.arrayOf(PropTypes.number).isRequired,
   updateUserGenres: PropTypes.func.isRequired,
-  setSidebarIn: PropTypes.func.isRequired
-}
+  setSidebarIn: PropTypes.func.isRequired,
+};
 
-export default Sidebar
+export default Sidebar;
