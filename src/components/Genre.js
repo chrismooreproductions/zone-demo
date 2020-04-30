@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react'
-import PropTypes from 'prop-types'
-import '../styles/components/_genre.scss'
+import React, { useState, useEffect } from "react"
+import PropTypes from "prop-types"
+import "../styles/components/_genre.scss"
 
 const Genre = ({ genre, userGenres, updateUserGenres }) => {
   const [isChecked, setIsChecked] = useState(false)
@@ -14,7 +14,7 @@ const Genre = ({ genre, userGenres, updateUserGenres }) => {
   // Let's assume genres don't share ID's please...
   return (
     <>
-      { genre ?
+      {genre ? (
         <li className="genre">
           <input
             key={genre.id}
@@ -25,8 +25,7 @@ const Genre = ({ genre, userGenres, updateUserGenres }) => {
           />
           <span className="--name">{genre.name}</span>
         </li>
-        : null
-      }   
+      ) : null}
     </>
   )
 }
@@ -34,7 +33,7 @@ const Genre = ({ genre, userGenres, updateUserGenres }) => {
 Genre.propTypes = {
   genre: PropTypes.shape({
     id: PropTypes.number,
-    name: PropTypes.string
+    name: PropTypes.string,
   }),
   userGenres: PropTypes.arrayOf(PropTypes.string).isRequired,
   updateUserGenres: PropTypes.func.isRequired,

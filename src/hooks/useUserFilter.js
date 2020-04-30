@@ -1,5 +1,5 @@
-import {useState, useEffect} from 'react'
-import filters from '../constants/filters'
+import { useState, useEffect } from "react"
+import filters from "../constants/filters"
 
 const useUserFilter = (filter) => {
   const { GENRES } = filters

@@ -1,8 +1,8 @@
-import React, { useLayoutEffect } from 'react'
-import PropTypes from 'prop-types'
-import Movie from '../components/Movie'
-import '../styles/containers/_movies.scss'
-import Fade from '../animated/Fade'
+import React, { useLayoutEffect } from "react"
+import PropTypes from "prop-types"
+import Movie from "../components/Movie"
+import "../styles/containers/_movies.scss"
+import Fade from "../animated/Fade"
 
 const Movies = ({ movies, sidebarIn, moviesIn, setMoviesIn, ...props }) => {
   useLayoutEffect(() => {
@@ -10,15 +10,12 @@ const Movies = ({ movies, sidebarIn, moviesIn, setMoviesIn, ...props }) => {
       setMoviesIn(true)
     }
   }, [sidebarIn, moviesIn, setMoviesIn])
-  
+
   return (
-    <Fade
-      displayed={props.displayed}
-      className={props.className}
-    >
+    <Fade displayed={props.displayed} className={props.className}>
       {movies.map((movie, index) => {
         return (
-          <Movie 
+          <Movie
             key={index}
             displayed={moviesIn}
             className="movie"

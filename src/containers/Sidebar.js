@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import Genres from "./Genres";
-import Ratings from "./Ratings";
-import "../styles/containers/_sidebar.scss";
-import "../styles/components/_checkbox.scss";
+import React, { useState, useEffect } from "react"
+import PropTypes from "prop-types"
+import Genres from "./Genres"
+import Ratings from "./Ratings"
+import "../styles/containers/_sidebar.scss"
+import "../styles/components/_checkbox.scss"
 
 const Sidebar = ({
   allGenresForMovies,
@@ -15,16 +15,16 @@ const Sidebar = ({
   setSidebarIn,
 }) => {
   // These two state values are the switches for the sidebar panel animations.
-  const [genresDisplayed, setGenresDisplayed] = useState(false);
-  const [ratingsDisplayed, setRatingsDisplayed] = useState(false);
+  const [genresDisplayed, setGenresDisplayed] = useState(false)
+  const [ratingsDisplayed, setRatingsDisplayed] = useState(false)
 
   useEffect(() => {
     if (genresDisplayed && ratingsDisplayed && !sidebarIn) {
       // this is the prop that sets the sidebar visibility to true, then we can
       // animate the movies in...
-      setSidebarIn(true);
+      setSidebarIn(true)
     }
-  });
+  })
 
   return (
     // TODO: implement error handling here in case no movies ando/or genre
@@ -56,8 +56,8 @@ const Sidebar = ({
         />
       }
     </div>
-  );
-};
+  )
+}
 
 Sidebar.propTypes = {
   sidebarIn: PropTypes.bool.isRequired,
@@ -67,6 +67,6 @@ Sidebar.propTypes = {
   userGenres: PropTypes.arrayOf(PropTypes.number).isRequired,
   updateUserGenres: PropTypes.func.isRequired,
   setSidebarIn: PropTypes.func.isRequired,
-};
+}
 
-export default Sidebar;
+export default Sidebar

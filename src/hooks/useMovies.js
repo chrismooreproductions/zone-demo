@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { getMovies } from "../api";
+import { useState, useEffect } from "react"
+import { getMovies } from "../api"
 
 const useMovies = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([])
 
   useEffect(() => {
     // Pretty basic logc here for deciding
@@ -11,14 +11,14 @@ const useMovies = () => {
     // movies
     if (movies.length === 0) {
       const fetchData = async () => {
-        const fetchedMovies = await getMovies();
-        setMovies(fetchedMovies.results);
-      };
-      fetchData();
+        const fetchedMovies = await getMovies()
+        setMovies(fetchedMovies.results)
+      }
+      fetchData()
     }
-  }, [movies]);
+  }, [movies])
 
-  return { movies, setMovies };
-};
+  return { movies, setMovies }
+}
 
-export default useMovies;
+export default useMovies

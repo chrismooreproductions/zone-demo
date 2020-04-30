@@ -1,12 +1,11 @@
-@import '../mixins/containers';
-@import '../variables/variables';
+@import "../mixins/containers";
+@import "../variables/variables";
 
 .movies {
-
   img {
     border-radius: 4px;
   }
-  
+
   .movie {
     @include container-style();
     padding: $spacer;

@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import Header from '../containers/Header'
-import Sidebar from '../containers/Sidebar'
-import Movies from '../containers/Movies'
-import filters from '../constants/filters'
-import '../styles/containers/_app.scss'
+import React, { useState, useEffect } from "react"
+import Header from "../containers/Header"
+import Sidebar from "../containers/Sidebar"
+import Movies from "../containers/Movies"
+import filters from "../constants/filters"
+import "../styles/containers/_app.scss"
 
-import useFilteredMovies from '../hooks/useFilteredMovies'
-import cloneObject from '../helpers/cloneObject'
+import useFilteredMovies from "../hooks/useFilteredMovies"
+import cloneObject from "../helpers/cloneObject"
 
 function App() {
   const [userGenres, setUserGenres] = useState([])
@@ -22,7 +22,7 @@ function App() {
   const [headerIn, setHeaderIn] = useState(false)
   const [sidebarIn, setSidebarIn] = useState(false)
   const [moviesIn, setMoviesIn] = useState(false)
-  
+
   useEffect(() => {
     setHeaderIn(true)
   }, [headerIn])
@@ -47,10 +47,7 @@ function App() {
 
   return (
     <>
-      <Header
-        displayed={headerIn}
-        className="header"
-      />
+      <Header displayed={headerIn} className="header" />
       <Sidebar
         sidebarIn={sidebarIn}
         userRating={userRating}
@@ -66,10 +63,10 @@ function App() {
         setMoviesIn={setMoviesIn}
         sidebarIn={sidebarIn}
         displayed={moviesIn}
-        className='movies'
+        className="movies"
       />
     </>
   )
 }
 
-export default App;
+export default App

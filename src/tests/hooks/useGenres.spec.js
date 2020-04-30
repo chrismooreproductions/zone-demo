@@ -1,11 +1,11 @@
-import useGenres from '../../hooks/useGenres'
-import { renderHook } from '@testing-library/react-hooks'
-import genresData from '../data/genres.json'
-import sortGenreDataById from '../../helpers/sortGenreDataById'
-import { fakeServer } from 'sinon';
-import config from '../../config'
+import useGenres from "../../hooks/useGenres"
+import { renderHook } from "@testing-library/react-hooks"
+import genresData from "../data/genres.json"
+import sortGenreDataById from "../../helpers/sortGenreDataById"
+import { fakeServer } from "sinon"
+import config from "../../config"
 
-const {rootUrl, postUrl} = config
+const { rootUrl, postUrl } = config
 let server
 
 beforeEach(() => {
@@ -16,21 +16,17 @@ afterEach(() => {
   server.restore()
 })
 
-it('should start with genres as an empty array', () => {
+it("should start with genres as an empty array", () => {
   const { result } = renderHook(() => useGenres())
   expect(result.current.allGenres).toStrictEqual([])
 })
 
-it('should get and return genres based on the test data provided', async () => {
+it("should get and return genres based on the test data provided", async () => {
   const genreData = JSON.stringify(genresData)
   const url = `${rootUrl}/genre/movie/list${postUrl}`
   const { result, waitForNextUpdate } = renderHook(() => useGenres())
 
-  server.respondWith('GET', url, [
-    200,
-    {},
-    genreData
-  ])
+  server.respondWith("GET", url, [200, {}, genreData])
 
   server.respond()
 

@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import Genre from "../components/Genre";
-import Fade from "../animated/Fade";
-import downArrow from "../assets/images/down-arrow.svg";
-import "../styles/containers/_genres.scss";
+import React, { useEffect } from "react"
+import PropTypes from "prop-types"
+import Genre from "../components/Genre"
+import Fade from "../animated/Fade"
+import downArrow from "../assets/images/down-arrow.svg"
+import "../styles/containers/_genres.scss"
 
 const Genres = ({
   allGenresForMovies,
@@ -15,8 +15,8 @@ const Genres = ({
   animationDelay,
 }) => {
   useEffect(() => {
-    setGenresDisplayed(true);
-  }, [setGenresDisplayed]);
+    setGenresDisplayed(true)
+  }, [setGenresDisplayed])
 
   return (
     <Fade
@@ -35,7 +35,7 @@ const Genres = ({
                   userGenres={userGenres}
                   updateUserGenres={updateUserGenres}
                 />
-              );
+              )
             })
           : // should have some loading handler component here...
             null}
@@ -44,8 +44,8 @@ const Genres = ({
         <img src={downArrow} alt="Movie genres down arrow" />
       </div>
     </Fade>
-  );
-};
+  )
+}
 
 Genres.propTypes = {
   allGenresForMovies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -56,6 +56,6 @@ Genres.propTypes = {
   displayed: PropTypes.bool.isRequired,
   className: PropTypes.string.isRequired,
   animationDelay: PropTypes.number.isRequired,
-};
+}
 
-export default Genres;
+export default Genres

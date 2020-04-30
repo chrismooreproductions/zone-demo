@@ -1,6 +1,6 @@
-@import '../mixins/margins';
-@import '../mixins/containers';
-@import '../variables/variables';
+@import "../mixins/margins";
+@import "../mixins/containers";
+@import "../variables/variables";
 
 #root {
   @include external-margins();
@@ -31,11 +31,11 @@
     grid-area: sidebar;
     display: flex;
     flex-direction: column;
-    
+
     > div {
       @include container-style();
     }
-    
+
     > div:not(:last-child) {
       margin-bottom: $spacer;
     }

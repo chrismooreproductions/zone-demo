@@ -1,5 +1,5 @@
-import {useState, useEffect} from 'react'
-import findEqual from '../helpers/findEqual'
+import { useState, useEffect } from "react"
+import findEqual from "../helpers/findEqual"
 
 const useUserGenres = (genres) => {
   const [userGenres, setUserGenres] = useState([])

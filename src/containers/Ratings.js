@@ -1,11 +1,18 @@
-import React, { useEffect } from 'react'
-import PropTypes from 'prop-types'
-import Slider from 'react-input-slider';
-import Fade from '../animated/Fade';
+import React, { useEffect } from "react"
+import PropTypes from "prop-types"
+import Slider from "react-input-slider"
+import Fade from "../animated/Fade"
 
-const Ratings = ({ updateRating, userRating, genresDisplayed, ratingsDisplayed, setRatingsDisplayed, ...props }) => {
+const Ratings = ({
+  updateRating,
+  userRating,
+  genresDisplayed,
+  ratingsDisplayed,
+  setRatingsDisplayed,
+  ...props
+}) => {
   useEffect(() => {
-    if (!ratingsDisplayed && genresDisplayed) setRatingsDisplayed(true) 
+    if (!ratingsDisplayed && genresDisplayed) setRatingsDisplayed(true)
   })
 
   return (
@@ -23,11 +30,11 @@ const Ratings = ({ updateRating, userRating, genresDisplayed, ratingsDisplayed, 
           xmin={0}
           xmax={10}
           x={userRating}
-          onChange={({ x }) => updateRating( parseFloat(x.toFixed(2)) )}
+          onChange={({ x }) => updateRating(parseFloat(x.toFixed(2)))}
           styles={{
             track: {
-              width: '100%'
-            }
+              width: "100%",
+            },
           }}
         />
       </div>
@@ -42,7 +49,7 @@ Ratings.propTypes = {
   updateRating: PropTypes.func.isRequired,
   userRating: PropTypes.number.isRequired,
   className: PropTypes.string.isRequired,
-  animationDelay: PropTypes.number.isRequired
+  animationDelay: PropTypes.number.isRequired,
 }
 
 export default Ratings

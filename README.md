@@ -19,8 +19,9 @@ There is a config file in ./src/config that contains the API keys and URL roots 
 The movies are automatically returned in order of popularity from the API (highest to lowest).
 
 Movies are filtered in 2 steps:
-1) By the user's selected genres (if there are any genres selected in the sidebar!)
-2) By the popularity of these filtered movies
+
+1. By the user's selected genres (if there are any genres selected in the sidebar!)
+2. By the popularity of these filtered movies
 
 Sorry there are no tests, I didn't have much time to work on this. I did use the PropTypes package, though I generally
 prefer typescript these days!

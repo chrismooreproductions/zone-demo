@@ -1,7 +1,7 @@
 const getGenresForMovies = (movies) => {
   const genresForMovies = []
   if (movies) {
-    movies.forEach(movie => {
+    movies.forEach((movie) => {
       for (let gId in movie.genre_ids) {
         genresForMovies.push(movie.genre_ids[gId])
       }
